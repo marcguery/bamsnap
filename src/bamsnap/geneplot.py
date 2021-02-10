@@ -5,19 +5,13 @@ import tabix
 
 LINETYPE = []
 LINETYPE.append('exon')
-LINETYPE.append('CDS')
-LINETYPE.append('start_codon')
-LINETYPE.append('stop_codon')
-LINETYPE.append('five_prime_utr')
-LINETYPE.append('three_prime_utr')
-LINETYPE.append('Selenocysteine')
 
 class GeneAnnot():
     def __init__(self, rec, header):
         self.data = {}
         for i in range(len(header)):
             self.data[header[i]] = rec[i]
-
+        print(rec)
         self.chrom = rec[header.index('CHROM')]
         self.spos = int(rec[header.index('SPOS')])
         self.epos = int(rec[header.index('EPOS')])
@@ -36,19 +30,19 @@ class GeneAnnot():
         return self.gene_name + "("+ self.gene_id +")"
 
     def load_transcript(self):
-        transcript_id_list = self.data['transcript_id'].split('|')
-        transcript_biotype_list = self.data['transcript_biotype'].split('|')
-        transcript_spos_list = self.data['transcript_spos'].split('|')
-        transcript_epos_list = self.data['transcript_epos'].split('|')
+        transcript_id_list = [self.data['gene_id']]
+        transcript_biotype_list = self.data['gene_biotype']
+        transcript_spos_list = self.data['SPOS']
+        transcript_epos_list = self.data['EPOS']
         ltype_list = {}
         for ltype in LINETYPE:
-            ltype_list[ltype+'_spos'] = self.data[ltype+'_spos'].split('|')
-            ltype_list[ltype+'_epos'] = self.data[ltype+'_epos'].split('|')
+            ltype_list['SPOS'] = self.data['SPOS']
+            ltype_list['EPOS'] = self.data['EPOS']
         for i, tid in enumerate(transcript_id_list):
-            t1 = TranscriptAnnot(tid, transcript_biotype_list[i], transcript_spos_list[i], transcript_epos_list[i])
+            t1 = TranscriptAnnot(tid, self.gene_biotype, self.spos, self.epos)
             for ltype in LINETYPE:
-                t1.subregion[ltype+'_spos'] = ltype_list[ltype+'_spos'][i].split(',')
-                t1.subregion[ltype+'_epos'] = ltype_list[ltype+'_epos'][i].split(',')
+                t1.subregion['SPOS'] = ltype_list['SPOS']
+                t1.subregion['EPOS'] = ltype_list['EPOS']
             t1.set_subregion()
             self.transcripts.append(t1)
 
@@ -71,8 +65,8 @@ class TranscriptAnnot():
 
     def set_subregion(self):
         for ltype in LINETYPE:
-            self.subregion[ltype+'_spos'] = convert_int_list(self.subregion[ltype+'_spos'])
-            self.subregion[ltype+'_epos'] = convert_int_list(self.subregion[ltype+'_epos'])
+            self.subregion['SPOS'] = convert_int_list(self.subregion['SPOS'])
+            self.subregion['EPOS'] = convert_int_list(self.subregion['EPOS'])
 
 
 class GenePlot():
@@ -153,9 +147,9 @@ class GenePlot():
 
                 yi += fontsize[1] + int(self.lineheight/2)
                 col1 = getrgb(self.gene_neg_color, whitening=50) if ga.is_negative else getrgb(self.gene_pos_color, whitening=50)
-                for i, s1 in enumerate(t1.subregion['exon_spos']):
-                    x1 = max(self.xscale.get_x(t1.subregion['exon_spos'][i])['spos'], 0)
-                    x2 = max(min(self.xscale.get_x(t1.subregion['exon_epos'][i])['epos'], self.w), 0)
+                for i, s1 in enumerate(t1.subregion['SPOS']):
+                    x1 = max(self.xscale.get_x(t1.subregion['SPOS'][i])['spos'], 0)
+                    x2 = max(min(self.xscale.get_x(t1.subregion['EPOS'][i])['epos'], self.w), 0)
                     if x1 > 0 or x2 > 0:
                         dr.line([(x1, yi), (x2, yi)], fill=col1, width=self.lineheight)
 

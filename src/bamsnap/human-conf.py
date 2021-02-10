@@ -49,6 +49,6 @@ COLOR['GRID_COLOR'] = ImageColor.getrgb("#EEEEEE")
 
 IMAGE_MARGIN_BOTTOM = 20
 
-GENE_ANNOT_FILE  = "PlasmoDB-#REFSEQVERSION#.bed.gz"
+GENE_ANNOT_FILE  = "Homo_sapiens.#REFSEQVERSION#.bed.gz"
 
-REFER_SEQ_VERSION = {'3d7': '46_Pfalciparum3D7', 'dd2':'50_PfalciparumDd2', 'hb3':'49_PfalciparumHB3'}
+REFER_SEQ_VERSION = {'GRCh37': 'GRCh37', 'hg19':'GRCh37', 'GRCh38':'GRCh38', 'hg38':'GRCh38'}

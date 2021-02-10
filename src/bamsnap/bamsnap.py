@@ -583,8 +583,11 @@ class ReferenceSequence():
         i = 0
         refseq = {}
         for gpos in range(spos, epos):
-            refseq[gpos+1] = seq[i]
-            i += 1
+            if i >= len(seq) or gpos < 0:
+                refseq[gpos+1] = "_"
+            else:
+                refseq[gpos+1] = seq[i]
+                i += 1
         return refseq
 
     def get_refseq_from_fasta(self, chrom, spos, epos, rebuild_index=False):
@@ -594,5 +597,5 @@ class ReferenceSequence():
             arr = c1.split(' ')
             tchrom = arr[0]
             fastachrommap[tchrom] = c1
-        refseq = f[fastachrommap[chrom]][spos:epos+1]
+        refseq = f[fastachrommap[chrom]][max(0,spos):epos+1]
         return str(refseq)
