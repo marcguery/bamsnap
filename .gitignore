@@ -3,6 +3,7 @@ src/bamsnap/__pycache__/
 __pycache__/
 .DS_Store
 .eggs/
+src/*.egg-info/*
 *.egg-info/
 *.egg
 build/*
