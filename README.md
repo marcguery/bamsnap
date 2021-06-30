@@ -3,7 +3,9 @@
 [![Code Health](https://landscape.io/github/bamsnap/bamsnap/develop/landscape.svg?style=flat)](https://landscape.io/github/bamsnap/bamsnap/develop) 
 [![Coverage Status](https://img.shields.io/codecov/c/github/bamsnap/bamsnap/develop.svg)](https://codecov.io/github/bamsnap/bamsnap?branch=develop)-->
 
-BamSnap: a lightweight command-based visualization tool for sequencing reads in BAM files
+BamSnap: a lightweight command-based visualization tool for sequencing reads in BAM files.
+
+**Disclaimer: This is not the official version of bamsnap, but the one adapted for not only human but also *Plasmodium* species**
 
 <!--<img src="https://raw.githubusercontent.com/parklab/bamsnap/master/data/ex1/snapfiles/snap_test11.bam_1_715347-715348.png" height=128px width=405px>-->
 
@@ -23,17 +25,10 @@ For more details, see BamSnap [**Documentation**](http://bamsnap.readthedocs.io/
 * [pyfaidx](https://pypi.org/project/pyfaidx/)
 * [pytabix](https://pypi.org/project/pytabix/)
 
-### Install with pip
-
-```bash
-pip install bamsnap
-```
-* [pypi site for bamsnap](https://pypi.org/project/bamsnap/)
-
 ### Install with github
 
 ```
-git clone https://github.com/parklab/bamsnap
+git clone https://github.com/marcguery/bamsnap
 cd bamsnap
 python setup.py install
 ```
