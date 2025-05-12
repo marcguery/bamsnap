@@ -51,4 +51,4 @@ IMAGE_MARGIN_BOTTOM = 20
 
 GENE_ANNOT_FILE  = "PlasmoDB-#REFSEQVERSION#.bed.gz"
 
-REFER_SEQ_VERSION = {'3d7': '46_Pfalciparum3D7', 'dd2':'50_PfalciparumDd2', 'hb3':'49_PfalciparumHB3'}
+REFER_SEQ_VERSION = {'dc07': 'DC07', '3d7': '67_Pfalciparum3D7', 'dd2':'50_PfalciparumDd2', 'hb3':'49_PfalciparumHB3'}

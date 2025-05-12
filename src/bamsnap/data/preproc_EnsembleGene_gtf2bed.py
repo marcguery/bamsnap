@@ -261,6 +261,6 @@ if __name__ == "__main__":
     gtf = sys.argv[1]
     out = gtf.replace('.gtf.gz', '.bed')
     # convert_ensemblgene_gtf2bed(gtf, path + "Homo_sapiens.GRCh38.99.alltype.bed", ["alltype"])
-    convert_ensemblgene_gtf2bed(gtf, out , ["alltype"], ['protein_coding','miRNA','polymorphic_pseudogene'], "compressed")
+    convert_ensemblgene_gtf2bed(gtf, out , ["alltype"], ['protein_coding_gene', 'empty'], "compressed")
     # convert_ensemblgene_gtf2bed(gtf, out , ["alltype"], ['protein_coding','miRNA','polymorphic_pseudogene'], "all")
 

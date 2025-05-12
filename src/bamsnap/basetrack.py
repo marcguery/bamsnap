@@ -37,7 +37,9 @@ class BaseTrack():
         vcls = ""
         for i in range(self.g_len):
             posi = self.spos + i
-            base = self.refseq[posi]
+            base = self.refseq[posi] if posi in self.refseq else "N"
+            if base not in ["A", "T", "G", "C"]:
+                base = "N"
             # x1 = int(i * self.scale_x) + int(self.scale_x/2) - int(fontsize[0]/2)
             x1 = self.xscale.xmap[posi]['spos']
             x2 = self.xscale.xmap[posi]['epos']

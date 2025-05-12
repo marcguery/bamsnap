@@ -11,7 +11,6 @@ class GeneAnnot():
         self.data = {}
         for i in range(len(header)):
             self.data[header[i]] = rec[i]
-        print(rec)
         self.chrom = rec[header.index('CHROM')]
         self.spos = int(rec[header.index('SPOS')])
         self.epos = int(rec[header.index('EPOS')])
